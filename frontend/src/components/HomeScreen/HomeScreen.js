@@ -1,24 +1,47 @@
-import React from 'react'
-import data from "../../Data"
+import React, { useEffect, useState } from 'react'
 import Product from '../product/Product';
-import Rating from '../Rating/Rating';
+import LoadingBox from '../LoadingBox/LoadingBox';
+import ErrorBox from '../ErrorBox/ErrorBox';
+
+// import Rating from '../Rating/Rating';
+import axios from "axios"
 
 const HomeScreen = (props) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const data = await axios.get("/api/products");
+                const product = data.data.data;
+                setLoading(false);
+                setProducts(product.products);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
 
-   
+        };
+        fetchData();
+    }, [])
 
     return (
         <div>
-            <div className="row center">
-                {
-                    data.products.map(product =>
-                        <Product
-                            key={product._id}
-                            product={product}
-                        />
-                    )
-                }
-            </div>
+            {loading ? <LoadingBox loading={loading} />
+                : error ? <ErrorBox variant="danger">{error}</ErrorBox> :
+                    <div className="row center">
+                        {
+                            products.map(product =>
+                            (<Product
+                                key={product._id}
+                                product={product}
+                            />)
+                            )
+                        }
+                    </div>
+            }
         </div>
     )
 }
