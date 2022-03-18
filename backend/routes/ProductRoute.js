@@ -4,8 +4,8 @@ const ProductsController = require('../controllers/ProductController')
 
 
 
-Route.get("/api/products", ProductsController.getAllProducts)
-
+Route.get("", ProductsController.getAllProducts)
+Route.get("/:product_id", ProductsController.getProductDetails)
 
 module.exports = Route;
 

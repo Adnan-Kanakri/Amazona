@@ -4,7 +4,9 @@ const path = require("path");
 const morgan = require("morgan");
 const fs = require("fs");
 const app = express();
-const route = require("./routes");
+// const route = require("./routes");
+const ProductRoute = require('../routes/ProductRoute')
+
 const helmet = require("helmet");
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -23,12 +25,12 @@ const accessStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a",
 });
 app.use(morgan("dev", { stream: accessStream }));
-
-
 app.use(helmet());
 
 //  import route
-route.allRoutes(app);
+
+app.use('/api/products', ProductRoute)
+
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.send({
