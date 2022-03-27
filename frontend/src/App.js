@@ -5,6 +5,7 @@ import { Link, Route, Routes } from "react-router-dom"
 import Cart from './components/Cart/Cart';
 import HomeScreen from "./components/HomeScreen/HomeScreen"
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import SignIn from './components/SignIn/SignIn';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/cart/:id' element={<Cart />} />
           <Route path='/cart/:id?qty' element={<Cart />} />
+          <Route path='/singing' element={<SignIn />} />
           <Route path="/product/:id" element={<ProductDetail />}>
           </Route>
           <Route path="/" element={<HomeScreen />} />

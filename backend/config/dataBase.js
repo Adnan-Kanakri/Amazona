@@ -12,6 +12,8 @@ if (DB_USER != "" && DB_USER_PASSWORD != "") {
   url = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 }
 
+console.log(url)
+
 const dbConnect = mongoose
   .connect(url)
   .then(() => {

@@ -1,20 +1,22 @@
-const data = require("../helper/Data")
+const product = require("../models/productModel")
+const asyncFunc = require("express-async-handler");
 
-exports.getAllProducts = (req, res, next) => {
-    // console.log(req);
+exports.getAllProducts = asyncFunc(async (req, res, next) => {
+    const productList = await product.find();
     res.json({
-        data: data,
+        data: productList,
     })
-}
+})
 
-exports.getProductDetails = (req, res, next) => {
-    // console.log(req.params)
+exports.getProductDetails = asyncFunc(async (req, res, next) => {
     const id = req.params.product_id
-    const product = data.products.find(x => x._id === id);
-    if (product) {
-        // console.log(product)
+    const productDetails = await product.findById(id)
+    // data.products.find(x => x._id === id);
+    console.log(productDetails)
+    if (productDetails) {
         res.status(200).json({
-            data: product
+            message:"Done",
+            products: productDetails
         })
     } else {
         res.status(404).json({
@@ -22,5 +24,5 @@ exports.getProductDetails = (req, res, next) => {
         })
     }
 }
-
+)
 

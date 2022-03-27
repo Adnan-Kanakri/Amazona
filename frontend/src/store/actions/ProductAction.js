@@ -32,8 +32,9 @@ export const fetchProduct = () => {
         try {
             dispatch(productRequest());
             const data = await axios.get("/api/products");
+            console.log(data.data.data)
             let loading = false;
-            dispatch(setProduct(data.data.data.products, loading))
+            dispatch(setProduct(data.data.data, loading))
         } catch (error) {
             dispatch(fetchProductsFailed(error.message))
         }
@@ -74,7 +75,8 @@ export const ProductDetails = (productId) => {
         try {
             dispatch(productRequestDetails(productId));
             const { data } = await axios.get(`/api/products/${productId}`);
-            dispatch(productSetDetails(data.data))
+            console.log(data)
+            dispatch(productSetDetails(data.products))
         } catch (error) {
             dispatch(productErrorDetails(error))
         }
