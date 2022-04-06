@@ -3,10 +3,10 @@ import updateObject from '../Utility';
 
 const initialState = {
     loading: false,
-    userInfo: 
-    localStorage.getItem("userInfo") ?
-        JSON.parse(localStorage.getItem("userInfo")) : 
-        null,
+    userInfo:
+        // localStorage.getItem("userInfo") ?
+        //     JSON.parse(localStorage.getItem("userInfo")) :
+            null,
     error: null,
     token: null
 }
