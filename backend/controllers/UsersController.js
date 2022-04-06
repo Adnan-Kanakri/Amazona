@@ -2,11 +2,13 @@
 const Bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
 const JWT = require("jsonwebtoken");
-const httpError = require("http-errors")
+const generate = require("../helper/Utility");
+// const httpError = require("http-errors")
 
 exports.signInUser = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    console.log("from auth back end")
     try {
         const user = await User.findOne({
             email: email
@@ -14,21 +16,21 @@ exports.signInUser = async (req, res, next) => {
         if (user) {
             let passwordCheck = await Bcrypt.compare(password, user.password);
             if (passwordCheck) {
-                const token = JWT.sign({
-                    user: user
-                }, process.env.TOKEN_SECRET_KEY, {
-                    expiresIn:"30d"
-                })
                 res.status(200).json({
                     message: "Done",
                     user: user,
-                    token: token
+                    token: generate.generateToken(user)
                 })
             } else {
-                const error = new Error("password wrong")
-                throw httpError.NotAcceptable({
-                    message: error.message
+                // console.log("password")
+                // const error = new Error("password wrong")
+                // console.log(error.message)
+                res.status(406).json({
+                    message: "password wrong"
                 })
+                // throw httpError.NotAcceptable({
+                //     message: error.message
+                // })
             }
         } else {
             res.status(404).json({
@@ -37,5 +39,33 @@ exports.signInUser = async (req, res, next) => {
         }
     } catch (error) {
         next(error);
+    }
+}
+
+exports.createAccount = async (req, res, next) => {
+    const name = req.body.name;
+    const password = req.body.password;
+    const email = req.body.email
+    const confirmPassword = req.body.confirmPassword
+    try {
+        if (password === confirmPassword) {
+            const hashPassword = Bcrypt.hashSync(password, 8);
+            const user = new User({
+                name: name,
+                password: hashPassword,
+                email: email
+            })
+            const createUser = await user.save();
+            res.status(200).json({
+                user: createUser,
+                token: generate.generateToken(createUser)
+            })
+        } else {
+            res.status(500).json({
+                message: "the password doesn't match"
+            })
+        }
+    } catch (error) {
+        next(error)
     }
 }

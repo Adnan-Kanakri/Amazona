@@ -2,6 +2,7 @@ import axios from "axios";
 import * as actionType from "./actionsTypes";
 
 const setCart = (data, qty) => {
+
     const product = {
         ...data,
         qty: qty
@@ -18,7 +19,8 @@ export const addToCart = (productId, qty) => {
     return async (dispatch, getState) => {
         try {
             const { data } = await axios.get(`/api/products/${productId}`);
-            dispatch(setCart(data.data, qty))
+            console.log(data)
+            dispatch(setCart(data.products, qty))
             localStorage.setItem("carts", JSON.stringify(getState().cart.carts));
         } catch (error) {
 

@@ -1,19 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route, Routes } from "react-router-dom"
-
 import Cart from './components/Cart/Cart';
 import HomeScreen from "./components/HomeScreen/HomeScreen"
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import SignIn from './components/SignIn/SignIn';
-
+import { signOut } from "./store/actions/authAction"
+import { ArrowDropDown } from "@material-ui/icons"
+import Register from './components/Register/Register';
 function App() {
-
+  const style = {
+    color: "white",
+    fontSize: 20,
+    display: "inline"
+  }
   const cart = useSelector(state => {
     return state.cart
   })
   const { carts } = cart;
-  // console.log(carts)
+  const auth = useSelector(state => state.auth);
+  const { userInfo } = auth
+  const dispatch = useDispatch();
+  const signOutHandler = () => {
+    dispatch(signOut());
+  }
+
   return (
     <div className="grid-container">
       <header className="row">
@@ -29,7 +40,22 @@ function App() {
               )
             }
           </Link>
-          <Link to="singing">Sing In</Link>
+          {
+            userInfo ? (
+              <div className='dropdown'>
+                <Link to="#">{userInfo.name}<ArrowDropDown style={style} /> </Link>
+                <ul className='dropdown-content'>
+                  <Link to="#signup" onClick={signOutHandler}>Sign Out</Link>
+                </ul>
+              </div>
+
+            )
+              :
+              (
+                <Link to="signing">Sign In </Link>
+
+              )
+          }
         </div>
       </header>
       <main>
@@ -37,14 +63,15 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/cart/:id' element={<Cart />} />
           <Route path='/cart/:id?qty' element={<Cart />} />
-          <Route path='/singing' element={<SignIn />} />
+          <Route path='/signing' element={<SignIn />} />
+          <Route path='/register' element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />}>
           </Route>
           <Route path="/" element={<HomeScreen />} />
         </Routes>
       </main>
       <footer className="row center">All rights reserved.</footer>
-    </div>
+    </div >
   );
 }
 

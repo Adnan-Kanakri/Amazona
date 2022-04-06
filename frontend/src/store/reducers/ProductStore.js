@@ -5,7 +5,7 @@ const initialState = {
     products: [],
     product: {},
     loading: false,
-    error: ""
+    error: null
 }
 
 const setProducts = (state, action) => {
@@ -24,7 +24,7 @@ const setErrorRequest = (state, action) => {
 }
 
 const failProductDetails = (state, action) => {
-    return updateObject(state, { error: action.error , loading:action.loading });
+    return updateObject(state, { error: action.error, loading: action.loading });
 }
 
 const setProductDetails = (state, action) => {

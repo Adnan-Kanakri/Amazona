@@ -9,12 +9,14 @@ import { BrowserRouter } from "react-router-dom"
 import thunk from "redux-thunk"
 import ProductReducer from "./store/reducers/ProductStore"
 import CartReducer from "./store/reducers/CartStore"
+import AuthReducer from "./store/reducers/AuthStore"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const RootReducer = combineReducers({
   product: ProductReducer,
   cart: CartReducer,
+  auth: AuthReducer
 });
 
 // const reducerProduct = FirstStore;

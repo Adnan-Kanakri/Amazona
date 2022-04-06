@@ -8,3 +8,13 @@ export const PRODUCTS_DETAILS_FAIL = "PRODUCTS_DETAILS_FAIL";
 /////////////////////////////////////////////////////////////////////////
 export const CART_ADD_ITEM = "CART_ADD_ITEM";
 export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
+////////////////////////////////////////////////////////////////////
+export const USER_SIGN_IN_REQUEST = "USER_SIGN_IN_REQUEST";
+export const USER_SIGN_IN_SUCCESS = "USER_SIGN_IN_SUCCESS";
+export const USER_SIGN_IN_FAIL = "USER_SIGN_IN_FAIL";
+//////////////////////////////////////////////////////////////////////////
+export const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
+export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
+export const USER_REGISTER_FAIL = "USER_REGISTER_FAIL";
+//////////////////////////////////////////////////////////////////////////
+export const USER_SIGN_OUT = "USER_SIGN_OUT";

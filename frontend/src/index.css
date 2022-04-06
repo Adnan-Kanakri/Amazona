@@ -136,7 +136,7 @@ img {
 }
 img.small {
   max-width: 50px;
-  width:100%
+  width: 100%;
 }
 
 img.medium {
@@ -186,4 +186,29 @@ img.medium {
 .alert-danger {
   color: #a02020;
   background-color: #ffe0e0e0;
+}
+/* dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width: 12rem;
+  padding: 1rem;
+  z-index: 1;
+  background-color: #203040;
+  margin: 0;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

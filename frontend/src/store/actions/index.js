@@ -12,3 +12,8 @@ export {
     addToCart,
     removeFromCart
 } from "./CartActions"
+
+export {
+    singIn,
+    singUp
+} from "./authAction"
