@@ -1,15 +1,15 @@
 import * as actionType from "../actions/actionsTypes";
 import updateObject from '../Utility';
+import { getCookie } from "../../services/CookieService"
 
 const initialState = {
     loading: false,
-    userInfo:
-        // localStorage.getItem("userInfo") ?
-        //     JSON.parse(localStorage.getItem("userInfo")) :
-            null,
+    userInfo: getCookie("userInfo") ? getCookie("userInfo") : null,
     error: null,
     token: null
 }
+
+
 
 const signInRequest = (state, action) => {
     const UpdateState = {

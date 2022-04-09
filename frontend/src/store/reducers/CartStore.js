@@ -1,11 +1,12 @@
 import * as actionType from "../actions/actionsTypes";
 import updateObject from '../Utility';
+import { getCookie, setCookie } from "../../services/CookieService"
 
 const initialState = {
-    carts: localStorage.getItem("carts") ?
-        JSON.parse(localStorage.getItem("carts")) : [],
+    carts: getCookie("carts") ? getCookie("carts") : [],
+    // localStorage.getItem("carts") ?
+    // JSON.parse(localStorage.getItem("carts")) : [],
 }
-
 const addToCart = (state, action) => {
     const cartItem = action.product;
     const existItem = state.carts.find(x => {

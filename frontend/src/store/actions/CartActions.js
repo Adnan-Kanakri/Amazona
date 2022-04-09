@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionType from "./actionsTypes";
+import { getCookie, setCookie } from "../../services/CookieService"
 
 const setCart = (data, qty) => {
 
@@ -21,7 +22,8 @@ export const addToCart = (productId, qty) => {
             const { data } = await axios.get(`/api/products/${productId}`);
             console.log(data)
             dispatch(setCart(data.products, qty))
-            localStorage.setItem("carts", JSON.stringify(getState().cart.carts));
+            setCookie("carts", JSON.stringify(getState().cart.carts));
+            // localStorage.setItem("carts", JSON.stringify(getState().cart.carts));
         } catch (error) {
 
         }
@@ -40,7 +42,8 @@ export const removeFromCart = (productId) => {
     return async (dispatch, getState) => {
         try {
             dispatch(removedCart(productId));
-            localStorage.setItem("carts", JSON.stringify(getState().cart.carts))
+            setCookie("carts", JSON.stringify(getState().cart.carts));
+            // localStorage.setItem("carts", JSON.stringify(getState().cart.carts))
         } catch (error) {
 
         }
