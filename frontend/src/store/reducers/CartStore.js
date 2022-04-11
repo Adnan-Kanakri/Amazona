@@ -1,12 +1,19 @@
 import * as actionType from "../actions/actionsTypes";
 import updateObject from '../Utility';
-import { getCookie, setCookie } from "../../services/CookieService"
+import { getCookie } from "../../services/CookieService"
+
 
 const initialState = {
     carts: getCookie("carts") ? getCookie("carts") : [],
+    shippingAddress: getCookie("ShippingInfo") ? getCookie("ShippingInfo") : [],
+    paymentMethod: "PayPal"
     // localStorage.getItem("carts") ?
     // JSON.parse(localStorage.getItem("carts")) : [],
 }
+
+// console.log(getCookie("ShippingInfo"));
+// console.log("=============================");
+// console.log(JSON.parse(getCookie("ShippingInfo")));
 const addToCart = (state, action) => {
     const cartItem = action.product;
     const existItem = state.carts.find(x => {
@@ -34,13 +41,25 @@ const removeFromCart = (state, action) => {
     return updateObject(state, UpdateState);
 }
 
+const saveShipping = (state, action) => {
+    return updateObject(state, {
+        shippingAddress: action.payload
+    });
+}
 
+const savePaymentMethod = (state, action) => {
+    return updateObject(state, {
+        paymentMethod: action.payload
+    });
+}
 
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionType.CART_ADD_ITEM: return addToCart(state, action);
         case actionType.CART_REMOVE_ITEM: return removeFromCart(state, action);
+        case actionType.CART_SAVE_SHIPPING_ITEM: return saveShipping(state, action);
+        case actionType.CART_SAVE_PAYMENT_METHOD: return savePaymentMethod(state, action)
         default:
             return state;
     }

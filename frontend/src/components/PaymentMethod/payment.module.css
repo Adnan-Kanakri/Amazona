@@ -3,9 +3,14 @@
   margin: 0 auto;
   /* text-align: center; */
 }
-.form label {
-  margin: 10px 0;
-  display: block;
+
+.title {
+  margin-bottom: 10px;
+}
+
+label {
+  margin: 1rem 0;
+  margin-left: 0.3rem;
 }
 
 form > div {

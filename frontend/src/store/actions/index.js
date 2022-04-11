@@ -10,7 +10,9 @@ export {
 
 export {
     addToCart,
-    removeFromCart
+    removeFromCart,
+    saveShippingAddress,
+    savePaymentMethod
 } from "./CartActions"
 
 export {

@@ -8,6 +8,8 @@ export const PRODUCTS_DETAILS_FAIL = "PRODUCTS_DETAILS_FAIL";
 /////////////////////////////////////////////////////////////////////////
 export const CART_ADD_ITEM = "CART_ADD_ITEM";
 export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
+export const CART_SAVE_SHIPPING_ITEM = "CART_SAVE_SHIPPING_ITEM";
+export const CART_SAVE_PAYMENT_METHOD = "CART_SAVE_PAYMENT_METHOD";
 ////////////////////////////////////////////////////////////////////
 export const USER_SIGN_IN_REQUEST = "USER_SIGN_IN_REQUEST";
 export const USER_SIGN_IN_SUCCESS = "USER_SIGN_IN_SUCCESS";

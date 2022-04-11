@@ -26,7 +26,7 @@ const Cart = (props) => {
     }
 
     const checkOutHandler = () => {
-        history("/signup?redirect=shopping")
+        history("/signing?redirect=/shipping")
     }
 
     return (
@@ -50,7 +50,7 @@ const Cart = (props) => {
                                                         alt={item.name}
                                                     />
                                                 </div>
-                                                <div className='min-30'>
+                                                <div className={styled.min_30}>
                                                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                                                 </div>
                                                 <div>
@@ -74,7 +74,7 @@ const Cart = (props) => {
                                                 </div>
                                                 <div>
                                                     <button type='button' onClick={() => {
-                                                        
+
                                                         removeCartHandler(item._id)
                                                     }}>DELETE</button>
                                                 </div>

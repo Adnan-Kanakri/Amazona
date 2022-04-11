@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as actionType from "./actionsTypes";
-import { getCookie, setCookie } from "../../services/CookieService"
+import { setCookie } from "../../services/CookieService"
 
 const setCart = (data, qty) => {
 
@@ -47,5 +47,33 @@ export const removeFromCart = (productId) => {
         } catch (error) {
 
         }
+    }
+}
+
+const shippingSave = (data) => {
+    return {
+        type: actionType.CART_SAVE_SHIPPING_ITEM,
+        payload: data
+    }
+}
+
+export const saveShippingAddress = (data) => {
+    return async dispatch => {
+        dispatch(shippingSave(data));
+        setCookie("ShippingInfo", JSON.stringify(data));
+    }
+}
+
+const savePayment = (payment) => {
+    return {
+        type: actionType.CART_SAVE_PAYMENT_METHOD,
+        payload: payment
+    }
+}
+
+
+export const savePaymentMethod = (payment) => {
+    return async dispatch => {
+        dispatch(savePayment(payment));
     }
 }

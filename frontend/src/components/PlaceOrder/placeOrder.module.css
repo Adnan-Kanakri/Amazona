@@ -9,9 +9,9 @@
 .min_30 {
   min-width: 300px;
 }
-
 button.primary {
   background-color: #f0c040;
+  margin-top: 10px;
 }
 
 button.block {

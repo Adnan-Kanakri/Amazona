@@ -55,15 +55,10 @@ export const signOut = () => {
     return dispatch => {
         removeCookie("userInfo");
         removeCookie("carts");
+        removeCookie("ShippingInfo");
         dispatch(signOutSuccess())
     }
 }
-
-
-
-
-
-
 
 export const registerRequest = (email, password, name) => {
     return {
@@ -98,10 +93,7 @@ export const singUp = (email, password, name, confirmPassword) => {
             console.log(data)
             dispatch(registerSuccess(data))
             dispatch(signInSuccess(data))
-
-            // setCookie("userInfo", JSON.stringify(data.user));
-
-            // console.log(getCookie("userInfo"));
+            setCookie("userInfo", JSON.stringify(data.user));
             localStorage.setItem("userInfo", JSON.stringify(data.user));
         } catch (error) {
             dispatch(registerErrorFailed(error));

@@ -8,6 +8,9 @@ import SignIn from './components/SignIn/SignIn';
 import { signOut } from "./store/actions/authAction"
 import { ArrowDropDown } from "@material-ui/icons"
 import Register from './components/Register/Register';
+import ShippingAddress from './components/ShippingAddress/ShippingAddress';
+import PaymentMethod from './components/PaymentMethod/PaymentMethod';
+import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 function App() {
   const style = {
     color: "white",
@@ -64,6 +67,9 @@ function App() {
           <Route path='/cart/:id' element={<Cart />} />
           <Route path='/cart/:id?qty' element={<Cart />} />
           <Route path='/signing' element={<SignIn />} />
+          <Route path='/shipping' element={<ShippingAddress />} />
+          <Route path='/payment' element={<PaymentMethod />} />
+          <Route path='//place-order' element={<PlaceOrder />} />
           <Route path='/register' element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />}>
           </Route>

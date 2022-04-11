@@ -27,7 +27,7 @@ const SignUp = (props) => {
         if (userInfo) {
             navigation(redirect);
         }
-    }, [navigation, redirect, userInfo])
+    }, [])
     const formik = useFormik({
         initialValues: {
             email: "",
