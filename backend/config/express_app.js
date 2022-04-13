@@ -6,7 +6,7 @@ const fs = require("fs");
 const app = express();
 // const route = require("./routes");
 const ProductRoute = require('../routes/ProductRoute')
-
+const orderRoutes = require('../routes/OrderRoute')
 const usersRoutes = require("../routes/usersRouters")
 
 const helmet = require("helmet");
@@ -33,15 +33,14 @@ app.use(helmet());
 
 app.use('/api/products', ProductRoute)
 app.use("/api/users", usersRoutes);
+app.use("/api/orders", orderRoutes)
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
-  console.log(error.message)
   res.send({
     error: {
-      error: error.message.message,
-      // code: "" + error.message.code || 500,
-      // elements: error.message.array_error,
+      error: error.message,
+      code: error.statusCode || 500,
     },
   });
 })

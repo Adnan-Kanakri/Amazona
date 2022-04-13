@@ -19,9 +19,7 @@ const addToCart = (state, action) => {
     const existItem = state.carts.find(x => {
         return x._id === cartItem._id
     });
-
     if (existItem) {
-        console.log(state.carts);
         return updateObject(state, {
             carts: state.carts.map(x => x._id === existItem._id ? cartItem : x)
         })
@@ -34,7 +32,6 @@ const addToCart = (state, action) => {
 }
 
 const removeFromCart = (state, action) => {
-    console.log("test")
     const UpdateState = {
         carts: state.carts.filter(x => x._id !== action.productId)
     }
@@ -53,6 +50,11 @@ const savePaymentMethod = (state, action) => {
     });
 }
 
+const cartEmpty = (state, action) => {
+    return updateObject(state, {
+        carts: []
+    });
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -60,6 +62,7 @@ const reducer = (state = initialState, action) => {
         case actionType.CART_REMOVE_ITEM: return removeFromCart(state, action);
         case actionType.CART_SAVE_SHIPPING_ITEM: return saveShipping(state, action);
         case actionType.CART_SAVE_PAYMENT_METHOD: return savePaymentMethod(state, action)
+        case actionType.CART_EMPTY: return cartEmpty(state, action)
         default:
             return state;
     }

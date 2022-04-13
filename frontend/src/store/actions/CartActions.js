@@ -20,7 +20,6 @@ export const addToCart = (productId, qty) => {
     return async (dispatch, getState) => {
         try {
             const { data } = await axios.get(`/api/products/${productId}`);
-            console.log(data)
             dispatch(setCart(data.products, qty))
             setCookie("carts", JSON.stringify(getState().cart.carts));
             // localStorage.setItem("carts", JSON.stringify(getState().cart.carts));
@@ -77,3 +76,6 @@ export const savePaymentMethod = (payment) => {
         dispatch(savePayment(payment));
     }
 }
+
+
+

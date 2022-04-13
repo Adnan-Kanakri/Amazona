@@ -35,8 +35,9 @@ export const singIn = (email, password) => {
         dispatch(signInRequest(email, password));
         try {
             const { data } = await axios.post("/api/users/signIn", { email, password });
+            console.log(data)
             dispatch(signInSuccess(data))
-            setCookie("userInfo", JSON.stringify(data.user));
+            setCookie("userInfo", JSON.stringify(data));
             // console.log(getCookie("userInfo"));
             // localStorage.setItem("userInfo", JSON.stringify(data.user));
         } catch (error) {

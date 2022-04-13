@@ -19,7 +19,6 @@ const ProductDetail = (props) => {
     let classes = [styled.primary, styled.block]
     useEffect(() => {
         props.getDetailsProduct(productId);
-        console.log(props.prod)
     }, [])
 
 

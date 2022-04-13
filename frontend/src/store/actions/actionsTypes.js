@@ -10,6 +10,7 @@ export const CART_ADD_ITEM = "CART_ADD_ITEM";
 export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
 export const CART_SAVE_SHIPPING_ITEM = "CART_SAVE_SHIPPING_ITEM";
 export const CART_SAVE_PAYMENT_METHOD = "CART_SAVE_PAYMENT_METHOD";
+export const CART_EMPTY = "CART_EMPTY";
 ////////////////////////////////////////////////////////////////////
 export const USER_SIGN_IN_REQUEST = "USER_SIGN_IN_REQUEST";
 export const USER_SIGN_IN_SUCCESS = "USER_SIGN_IN_SUCCESS";
@@ -20,3 +21,8 @@ export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
 export const USER_REGISTER_FAIL = "USER_REGISTER_FAIL";
 //////////////////////////////////////////////////////////////////////////
 export const USER_SIGN_OUT = "USER_SIGN_OUT";
+/////////////////////////////////////////////////////////////////////////
+export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
+export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS";
+export const CREATE_ORDER_FAILED = "CREATE_ORDER_FAILED";
+export const ORDER_RESET = "ORDER_RESET";

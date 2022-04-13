@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckOutStep from '../CheckOutStep/CheckOutStep'
 import styled from "./placeOrder.module.css"
-import LoadingBox from "../LoadingBox/LoadingBox"
 import ErrorBox from "../ErrorBox/ErrorBox"
+import { createOrder, orderResat } from "../../store/actions/index"
+import LoadingButton from "../LoadingButton/LoadingButton"
+
 
 const PlaceOrder = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
+    const orderCreate = useSelector(state => state.order);
+    const { loading, error, success, order } = orderCreate
     let classes = [styled.primary, styled.block].join(" ")
     const toPrice = (num) => Number(num.toFixed(2))
     cart.ItemPrice = toPrice(
@@ -18,14 +23,19 @@ const PlaceOrder = () => {
     cart.taxPrice = toPrice(0.15 * cart.ItemPrice);
     cart.totalPrice = cart.ItemPrice + cart.shippingPrice + cart.taxPrice;
     const placeOrderHandler = () => {
-
+        dispatch(createOrder({
+            ...cart,
+        }));
     }
     useEffect(() => {
         if (!cart.paymentMethod) {
             navigate("/payment")
         }
-    }, [])
-    console.log(cart)
+        if (success) {
+            navigate(`/order/${order._id}`);
+            dispatch(orderResat())
+        }
+    }, [success])
     return (
         <div>
             <CheckOutStep step1 step2 step3 step4></CheckOutStep>
@@ -119,17 +129,18 @@ const PlaceOrder = () => {
                                 </div>
                             </li>
                             <li>
-                                <button
+                                {loading === false ? (<button
                                     className={classes}
-                                    type="button"
+                                    type="submit"
                                     onClick={placeOrderHandler}
                                     disabled={cart.carts.length === 0}
                                 >
                                     Place Order
-                                </button>
+                                </button>) : (
+                                    <LoadingButton />
+                                )}
                             </li>
-                            {/* {loading && <LoadingBox></LoadingBox>}
-                            {error && <ErrorBox variant="danger">{error}</ErrorBox>} */}
+                            {error && <ErrorBox variant="danger">{error}</ErrorBox>}
                         </ul>
                     </div>
                 </div>

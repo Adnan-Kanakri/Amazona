@@ -11,13 +11,11 @@ const HomeScreen = (props) => {
     // const dispatch = useDispatch();
     // const productList = useSelector(state => state.product)
     // const { products, loading } = productList;
-
     const [error, setError] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // dispatch(actionType.fetchProduct())
-                console.log(props)
                 await props.getListProduct();
             } catch (err) {
                 setError(err.message);

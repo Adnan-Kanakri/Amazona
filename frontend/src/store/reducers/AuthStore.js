@@ -4,9 +4,9 @@ import { getCookie } from "../../services/CookieService"
 
 const initialState = {
     loading: false,
-    userInfo: getCookie("userInfo") ? getCookie("userInfo") : null,
+    userInfo: getCookie("userInfo") ? getCookie("userInfo").user : null,
     error: null,
-    token: null
+    token: getCookie("userInfo") ? getCookie("userInfo").token : null
 }
 
 

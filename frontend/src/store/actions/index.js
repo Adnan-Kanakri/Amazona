@@ -12,10 +12,16 @@ export {
     addToCart,
     removeFromCart,
     saveShippingAddress,
-    savePaymentMethod
+    savePaymentMethod,
 } from "./CartActions"
 
 export {
     singIn,
     singUp
 } from "./authAction"
+
+export {
+    createOrder,
+    orderResat
+} from "./orderAction"
+

@@ -32,7 +32,6 @@ export const fetchProduct = () => {
         try {
             dispatch(productRequest());
             const data = await axios.get("/api/products");
-            console.log(data.data.data)
             let loading = false;
             dispatch(setProduct(data.data.data, loading))
         } catch (error) {
@@ -60,7 +59,6 @@ export const productSetDetails = (product) => {
 }
 
 export const productErrorDetails = (error) => {
-    console.log("error")
     return {
         type: actionType.PRODUCTS_DETAILS_FAIL,
         loading: false,
@@ -75,7 +73,6 @@ export const ProductDetails = (productId) => {
         try {
             dispatch(productRequestDetails(productId));
             const { data } = await axios.get(`/api/products/${productId}`);
-            console.log(data)
             dispatch(productSetDetails(data.products))
         } catch (error) {
             dispatch(productErrorDetails(error))

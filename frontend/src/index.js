@@ -10,13 +10,14 @@ import thunk from "redux-thunk"
 import ProductReducer from "./store/reducers/ProductStore"
 import CartReducer from "./store/reducers/CartStore"
 import AuthReducer from "./store/reducers/AuthStore"
-
+import OrderReducer from "./store/reducers/OrderStore"
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const RootReducer = combineReducers({
   product: ProductReducer,
   cart: CartReducer,
-  auth: AuthReducer
+  auth: AuthReducer,
+  order: OrderReducer
 });
 
 // const reducerProduct = FirstStore;
