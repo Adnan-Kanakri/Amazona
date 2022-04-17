@@ -11,6 +11,7 @@ import Register from './components/Register/Register';
 import ShippingAddress from './components/ShippingAddress/ShippingAddress';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
+import OrderDetail from './components/OrderDetail/OrderDetail';
 function App() {
   const style = {
     color: "white",
@@ -70,6 +71,7 @@ function App() {
           <Route path='/shipping' element={<ShippingAddress />} />
           <Route path='/payment' element={<PaymentMethod />} />
           <Route path='//place-order' element={<PlaceOrder />} />
+          <Route path='/order/:id' element={<OrderDetail />} />
           <Route path='/register' element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />}>
           </Route>

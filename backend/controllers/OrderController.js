@@ -3,8 +3,6 @@ const order = require("../models/orderModel")
 
 
 exports.createOrder = async (req, res, next) => {
-
-
     const orderItems = req.body.carts;
     const shippingAddress = req.body.shippingAddress;
     const paymentMethod = req.body.paymentMethod;
@@ -39,5 +37,22 @@ exports.createOrder = async (req, res, next) => {
         })
     } catch (error) {
         next(error);
+    }
+}
+
+exports.getOrderDetail = async (req, res, next) => {
+    const id = req.params.id;
+    try {
+        const orderDetail = await order.findById(id);
+        if (!orderDetail) {
+            const error = new Error("No Order Found");
+            error.statusCode = 404;
+            throw error;
+        }
+        res.status(201).json({
+            order: orderDetail
+        })
+    } catch (error) {
+        next(error)
     }
 }

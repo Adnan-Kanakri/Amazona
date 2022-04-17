@@ -22,6 +22,7 @@ export {
 
 export {
     createOrder,
-    orderResat
+    orderResat,
+    getOrderDetail
 } from "./orderAction"
 

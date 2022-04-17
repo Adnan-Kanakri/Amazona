@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
     const orderCreate = useSelector(state => state.order);
-    const { loading, error, success, order } = orderCreate
+    const { loading, error, success, orders } = orderCreate
     let classes = [styled.primary, styled.block].join(" ")
     const toPrice = (num) => Number(num.toFixed(2))
     cart.ItemPrice = toPrice(
@@ -32,8 +32,8 @@ const PlaceOrder = () => {
             navigate("/payment")
         }
         if (success) {
-            navigate(`/order/${order._id}`);
-            dispatch(orderResat())
+            navigate(`/order/${orders._id}`);
+            // dispatch(orderResat())
         }
     }, [success])
     return (
