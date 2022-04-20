@@ -6,19 +6,13 @@ import updateObject from '../Utility';
 const initialState = {
     loading: false,
     loadingOrder: true,
+    ordersRequest: [],
     success: false,
     orders: null,
     order: null,
     error: null,
 
 }
-
-// const initialState1 = {
-//     loading: false,
-//     error: null,
-
-// }
-
 
 const orderRequest = (state, action) => {
     return updateObject(state, {
@@ -67,6 +61,27 @@ const orderDetailFailed = (state, action) => {
     });
 }
 
+const orderMineListRequest = (state, action) => {
+    return updateObject(state, {
+        loading: true
+    })
+}
+
+const orderMineListSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        ordersRequest: action.payload,
+    })
+}
+
+const orderMineListFailed = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: action.error
+    })
+}
+
+
 const OrderReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionType.CREATE_ORDER_REQUEST: return orderRequest(state, action);
@@ -76,6 +91,9 @@ const OrderReducer = (state = initialState, action) => {
         case actionType.ORDER_DETAIL_REQUEST: return orderDetailRequest(state, action)
         case actionType.ORDER_DETAIL_SUCCESS: return orderDetailSuccess(state, action)
         case actionType.ORDER_DETAIL_FAILED: return orderDetailFailed(state, action)
+        case actionType.ORDER_MINE_LIST_REQUEST: return orderMineListRequest(state, action)
+        case actionType.ORDER_MINE_LIST_SUCCESS: return orderMineListSuccess(state, action)
+        case actionType.ORDER_MINE_LIST_FAILED: return orderMineListFailed(state, action)
         default:
             return state;
     }
@@ -83,11 +101,5 @@ const OrderReducer = (state = initialState, action) => {
 
 export default OrderReducer
 
-// export const OrderReducerDetail = (state = initialState1, action) => {
-//     switch (action.type) {
 
-//         default:
-//             return state;
-//     }
-// }
 

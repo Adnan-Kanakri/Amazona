@@ -12,6 +12,7 @@ import ShippingAddress from './components/ShippingAddress/ShippingAddress';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 import OrderDetail from './components/OrderDetail/OrderDetail';
+import OrderHistory from './components/OrderHistory/OrderHistory';
 function App() {
   const style = {
     color: "white",
@@ -49,7 +50,12 @@ function App() {
               <div className='dropdown'>
                 <Link to="#">{userInfo.name}<ArrowDropDown style={style} /> </Link>
                 <ul className='dropdown-content'>
-                  <Link to="#signup" onClick={signOutHandler}>Sign Out</Link>
+                  <li>
+                    <Link to="#signup" onClick={signOutHandler}>Sign Out</Link>
+                  </li>
+                  <li>
+                    <Link to="/order-history">Order History</Link>
+                  </li>
                 </ul>
               </div>
 
@@ -73,8 +79,8 @@ function App() {
           <Route path='//place-order' element={<PlaceOrder />} />
           <Route path='/order/:id' element={<OrderDetail />} />
           <Route path='/register' element={<Register />} />
-          <Route path="/product/:id" element={<ProductDetail />}>
-          </Route>
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/" element={<HomeScreen />} />
         </Routes>
       </main>

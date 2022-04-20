@@ -30,4 +30,7 @@ export const ORDER_RESET = "ORDER_RESET";
 export const ORDER_DETAIL_REQUEST = "ORDER_DETAIL_REQUEST";
 export const ORDER_DETAIL_SUCCESS = "ORDER_DETAIL_SUCCESS";
 export const ORDER_DETAIL_FAILED = "ORDER_DETAIL_FAILED";
-
+////////////////////////////////////////////////////////////////////////
+export const ORDER_MINE_LIST_REQUEST = "ORDER_MINE_LIST_REQUEST";
+export const ORDER_MINE_LIST_SUCCESS = "ORDER_MINE_LIST_SUCCESS";
+export const ORDER_MINE_LIST_FAILED = "ORDER_MINE_LIST_FAILED";

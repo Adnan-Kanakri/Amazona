@@ -56,3 +56,77 @@ exports.getOrderDetail = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.getOrderDetails = async (req, res, next) => {
+    try {
+
+        const userId = req.payload._id
+        // console.log(userId)
+        const userOrders = await order.find({ user: userId })
+        if (userOrders) {
+
+            // console.log(userOrders.shippingAddress)
+
+            // let test = userOrders.forEach(element => {
+            //     const or = {
+            //         _id: element._id,
+            //         createdAt: element.createdAt,
+            //         totalPrice: element.totalPrice,
+            //         isPaid: element.isPaid,
+            //         paidAt: element.paidAt,
+            //         isDelivered: element.isDelivered,
+            //         deliveredAt: element.deliveredAt,
+            //     }
+            //     return or
+            // });
+
+            // for (const key in userOrders) {
+            //     return order = {
+            //         _id: userOrders[key]._id,
+            //         createdAt: userOrders[key].createdAt,
+            //         totalPrice: userOrders[key].totalPrice,
+            //         isPaid: userOrders[key].isPaid,
+            //         paidAt: userOrders[key].paidAt,
+            //         isDelivered: userOrders[key].isDelivered,
+            //         deliveredAt: userOrders[key].deliveredAt,
+            //     }
+            // }
+
+            // for (let key = 0; key < userOrders.length; key++) {
+            //     let order = {
+            //         _id: userOrders[key]._id,
+            //         createdAt: userOrders[key].createdAt,
+            //         totalPrice: userOrders[key].totalPrice,
+            //         isPaid: userOrders[key].isPaid,
+            //         paidAt: userOrders[key].paidAt,
+            //         isDelivered: userOrders[key].isDelivered,
+            //         deliveredAt: userOrders[key].deliveredAt,
+            //     }
+            // }
+
+
+            // console.log(order)
+
+
+            /// id createdAt totalPrice isPaid paidAt isDelivered deliveredAt
+            res.status(200).json({
+                orders: userOrders
+                // {
+                //     _id: userOrders._id,
+                //     createdAt: userOrders.createdAt,
+                //     totalPrice: userOrders.totalPrice,
+                //     isPaid: userOrders.isPaid,
+                //     paidAt: userOrders.paidAt,
+                //     isDelivered: userOrders.isDelivered,
+                //     deliveredAt: userOrders.deliveredAt,
+                // }
+            })
+        } else {
+            const error = new Error("No Orders Found");
+            error.statusCode = 404;
+            throw error;
+        }
+    } catch (error) {
+        next(error);
+    }
+}

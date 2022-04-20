@@ -102,3 +102,46 @@ export const getOrderDetail = (orderId) => {
     }
 }
 
+const getOrderListRequest = () => {
+    return {
+        type: actionType.ORDER_MINE_LIST_REQUEST
+    }
+}
+
+const getOrderListSuccess = (data) => {
+    return {
+        type: actionType.ORDER_MINE_LIST_SUCCESS,
+        payload: data
+    }
+}
+
+
+const getOrderListFailed = (error) => {
+    return {
+        type: actionType.ORDER_MINE_LIST_FAILED,
+        error: error
+    }
+}
+
+
+export const getOrderListDetail = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(getOrderListRequest())
+            const info = getState().auth
+            const data = await axios.get("/api/orders/order-list", {
+                headers: {
+                    Authorization: `Bearer ${info.token}`,
+                }
+            });
+            dispatch(getOrderListSuccess(data.data.orders));
+        } catch (error) {
+            const message = error.response && error.response.data.message ?
+                error.response.data.message : error.message
+            dispatch(getOrderListFailed(message))
+        }
+
+    }
+}
+
+
