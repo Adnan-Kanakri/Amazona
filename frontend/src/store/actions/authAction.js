@@ -102,6 +102,105 @@ export const singUp = (email, password, name, confirmPassword) => {
     }
 }
 
+const userDetailRequest = () => {
+    return {
+        type: actionType.USER_DETAIL_REQUEST
+    }
+}
+
+const userDetailSuccess = (data) => {
+    return {
+        type: actionType.USER_DETAIL_SUCCESS,
+        payload: data
+    }
+}
+
+const userDetailFailed = (error) => {
+    return {
+        type: actionType.USER_DETAIL_FAIL,
+        error: error
+    }
+}
+
+export const getUserInfo = (userId) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(userDetailRequest());
+            const info = getState().auth
+            const data = await axios.get(`/api/users/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${info.token}`,
+                }
+            });
+            console.log(data.data)
+            dispatch(userDetailSuccess(data.data.user));
+        } catch (error) {
+            const message = error.response && error.response.data.message ?
+                error.response.data.message : error.message
+            dispatch(userDetailFailed(message))
+        }
+
+    }
+}
+
+
+
+const userUpdateRequest = () => {
+    return {
+        type: actionType.USER_UPDATE_REQUEST
+    }
+}
+
+const userUpdateSuccess = (data) => {
+    return {
+        type: actionType.USER_UPDATE_SUCCESS,
+        payload: data
+    }
+}
+
+const userUpdateFailed = (error) => {
+    return {
+        type: actionType.USER_UPDATE_FAIL,
+        error: error
+    }
+}
+
+
+export const updateUserInfo = (myData) => {
+    return async (dispatch, getState) => {
+        try {
+            console.log(myData)
+            dispatch(userUpdateRequest());
+            const info = getState().auth
+            const data = await axios.put(`/api/users/update`, myData, {
+                headers: {
+                    Authorization: `Bearer ${info.token}`,
+                }
+            });
+            console.log(data.data)
+            dispatch(userUpdateSuccess(data.data.user));
+            dispatch(signInSuccess(data.data.user));
+            setCookie("userInfo", data.data.user);
+        } catch (error) {
+            const message = error.response && error.response.data.message ?
+                error.response.data.message : error.message
+            dispatch(userUpdateFailed(message))
+        }
+    }
+}
+
+export const userUpdateReset = () => {
+    return dispatch => {
+        dispatch({
+            type: actionType.USER_UPDATE_RESET
+        })
+    }
+}
+
+
+
+
+
 
 
 

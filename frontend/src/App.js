@@ -13,6 +13,8 @@ import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 import OrderDetail from './components/OrderDetail/OrderDetail';
 import OrderHistory from './components/OrderHistory/OrderHistory';
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import PrivateRoute from './services/PrivateRoute';
 function App() {
   const style = {
     color: "white",
@@ -51,10 +53,13 @@ function App() {
                 <Link to="#">{userInfo.name}<ArrowDropDown style={style} /> </Link>
                 <ul className='dropdown-content'>
                   <li>
-                    <Link to="#signup" onClick={signOutHandler}>Sign Out</Link>
+                    <Link to="/order-history">Order History</Link>
                   </li>
                   <li>
-                    <Link to="/order-history">Order History</Link>
+                    <Link to="/my-profile">User Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="#signup" onClick={signOutHandler}>Sign Out</Link>
                   </li>
                 </ul>
               </div>
@@ -81,6 +86,11 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/order-history" element={<OrderHistory />} />
+          <Route path="/my-profile" element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          } />
           <Route path="/" element={<HomeScreen />} />
         </Routes>
       </main>

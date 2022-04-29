@@ -19,11 +19,11 @@ const OrderHistory = (props) => {
     // fetchData();
 
     useEffect(() => {
-        const fetchData = async () => {
-            // dispatch(actionType.fetchProduct())
-            await props.getListProduct();
-        };
-        fetchData();
+        // const fetchData = async () => {
+        // dispatch(actionType.fetchProduct())
+        props.getListProduct();
+        // };
+        // fetchData();
     }, [])
 
     console.log(props)

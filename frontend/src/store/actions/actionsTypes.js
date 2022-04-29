@@ -19,6 +19,15 @@ export const USER_SIGN_IN_FAIL = "USER_SIGN_IN_FAIL";
 export const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
 export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
 export const USER_REGISTER_FAIL = "USER_REGISTER_FAIL";
+///////////////////////////////////////////////////////////////////////////
+export const USER_DETAIL_REQUEST = "USER_DETAIL_REQUEST";
+export const USER_DETAIL_SUCCESS = "USER_DETAIL_SUCCESS";
+export const USER_DETAIL_FAIL = "USER_DETAIL_FAIL";
+//////////////////////////////////////////////////////////////////////////
+export const USER_UPDATE_REQUEST = "USER_UPDATE_REQUEST";
+export const USER_UPDATE_SUCCESS = "USER_UPDATE_SUCCESS";
+export const USER_UPDATE_FAIL = "USER_UPDATE_FAIL";
+export const USER_UPDATE_RESET = "USER_UPDATE_RESET ";
 //////////////////////////////////////////////////////////////////////////
 export const USER_SIGN_OUT = "USER_SIGN_OUT";
 /////////////////////////////////////////////////////////////////////////
@@ -34,3 +43,4 @@ export const ORDER_DETAIL_FAILED = "ORDER_DETAIL_FAILED";
 export const ORDER_MINE_LIST_REQUEST = "ORDER_MINE_LIST_REQUEST";
 export const ORDER_MINE_LIST_SUCCESS = "ORDER_MINE_LIST_SUCCESS";
 export const ORDER_MINE_LIST_FAILED = "ORDER_MINE_LIST_FAILED";
+////////////////////////////////////////////////////////////////////////

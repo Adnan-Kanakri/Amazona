@@ -17,7 +17,10 @@ export {
 
 export {
     singIn,
-    singUp
+    singUp,
+    getUserInfo,
+    updateUserInfo,
+    userUpdateReset
 } from "./authAction"
 
 export {

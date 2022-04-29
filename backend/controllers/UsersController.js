@@ -69,3 +69,54 @@ exports.createAccount = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.getUserProfile = async (req, res, next) => {
+    const id = req.params.id
+    try {
+        const user = await User.findById(id);
+        if (user) {
+            res.status(200).json({
+                user: user,
+            })
+        } else {
+            const error = new Error("No User Found");
+            error.statusCode = 404;
+            throw error;
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.updateProfile = async (req, res, next) => {
+    const id = req.payload._id;
+    const name = req.body.name;
+    const password = req.body.password;
+    const email = req.body.email
+    const confirmPassword = req.body.confirmPassword
+    try {
+        const user = await User.findById(id);
+        if (user) {
+            user.name = name || user.name
+            user.email = email || user.email
+            if (password && password === confirmPassword) {
+                const hashPassword = Bcrypt.hashSync(password, 8);
+                user.password = hashPassword
+            }
+            const updateUser = await user.save();
+            res.status(200).json({
+                user: updateUser,
+                token: generate.generateToken(createUser)
+            })
+        } else {
+            const error = new Error("No User Found");
+            error.statusCode = 404;
+            throw error;
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
